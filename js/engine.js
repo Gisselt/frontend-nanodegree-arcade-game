@@ -80,7 +80,21 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    function checkCollisions() {
+
+        var gameOver = false;
+
+        allEnemies.forEach(function(enemy) {
+            gameOver = enemy.y === player.y && collide(enemy.x, player.x);
+            if (gameOver) reset();
+        });
+    }
+
+    function collide(enemyX, playerX) {
+        return   playerX-enemyX > 0 ? Math.abs(playerX-enemyX) < 0.25: Math.abs(playerX-enemyX) < 1;
     }
 
     /* This is called by the update function  and loops through all of the
@@ -161,6 +175,7 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        player.reset();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
