@@ -38,9 +38,10 @@ var Player = function() {
 }
 
 Player.prototype.update = function(dt) {
-
+   // No op.  Player is updated via handleInput
 }
 
+// Puts player in initial position
 Player.prototype.reset = function() {
     this.x = 2;
     this.y = 5;
@@ -50,6 +51,8 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x*101, this.y*83-20);
 }
 
+// Moves the player in the grid based on user input
+// Checks to make sure players stays in bounds
 Player.prototype.handleInput = function(input) {
 
     switch (input) {
@@ -77,7 +80,6 @@ Player.prototype.handleInput = function(input) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-
 var allEnemies =   [new Enemy(0,1), new Enemy(3,1),
                     new Enemy(2,2), new Enemy(3,2),
                     new Enemy(1,3), new Enemy(2,3), new Enemy(5,3)];
